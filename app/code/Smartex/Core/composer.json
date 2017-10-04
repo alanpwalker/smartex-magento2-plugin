@@ -1,0 +1,20 @@
+{
+  "name": "smartexio/smartex-magento2-plugin",
+  "description": "Ethereum payment plugin for Magento using the smartex.io service.",
+  "type": "magento2-module",
+  "version": "1.0.0",
+  "license": [ "OSL-3.0","AFL-3.0"],
+  "require": {
+    "php": "~5.5.0|~5.6.0|~7.0.0",
+    "smartex/php-client": "~2.2",
+    "symfony/filesystem": "~2.3||~3",
+    "symfony/finder": "~2.3||~3"
+  },
+  "autoload": {
+    "files": [ "registration.php" ],
+    "psr-4": {
+      "Smartex\\Core\\": ""
+    }
+  }
+}
+

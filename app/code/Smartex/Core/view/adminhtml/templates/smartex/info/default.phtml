@@ -1,0 +1,17 @@
+<?php
+/**
+ * @license Copyright 2016-2017 Smartex.io Ltd., MIT License
+ * 
+ */
+
+/**
+ * @see Smartex\Core\Block\Info
+ */
+
+echo '<h3>Ordered with Smartex</h3>';
+
+if ($url = $block->getSmartexInvoiceUrl()) {
+    echo '<p><a href="' . $url . '" target="_blank">View Invoice</a></p>';
+}
+
+?>

@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @license Copyright 2016-2017 Smartex.io Ltd., MIT License
+ * 
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="payment">
+            <group id="smartex_section" translate="label" type="text" sortOrder="1000" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Smartex</label>
+                <comment>
+                    <![CDATA[
+                        <div style="background-color:#431b09;padding:5px;color:#ffffff"><img src="https://smartex.io/img/logo.png" alt="Smartex" witdth="113" height="44" /><a style="color:#ffffff;font-family:\'Ubuntu\',sans-serif;text-decoration:none;margin:15px" href="https://smartex.io" target="_blank">Support</a><a style="color:#ffffff;font-family:\'Ubuntu\',sans-serif;text-decoration:none;margin:15px" href="https://smartex.io" target="_blank">Sign Up</a><a style="color:#ffffff;font-family:\'Ubuntu\',sans-serif;text-decoration:none;margin:15px" href="https://smartex.io" target="_blank">Login</a></div>
+                    ]]>
+                </comment>
+                <group id="smartex" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Smartex</label>
+                    <attribute type="expanded">1</attribute>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Fieldset</frontend_model>
+                    <field id="pairing_code" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Pairing Code</label>
+                        <comment>
+                            <![CDATA[You must first create a pairing code for your Smartex Merchant account at <a href="https://smartex.io/api-tokens" target="_blank">https://smartex.io/api-tokens</a> and copy/paste 
+                            that code here. Once you have successfully paired this Magento store with your Smartex Merchant account, you can begin accepting Ethereum as payment.]]>
+                        </comment>
+                        <backend_model>Smartex\Core\Model\Config\Backend\PairingCode</backend_model>
+                        <config_path>payment/smartex/pairing_code</config_path>
+                    </field>
+                    <field id="fullscreen" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Redirect Checkout</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>payment/smartex/fullscreen</config_path>
+                    </field>
+                    <field id="active" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Enabled</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>payment/smartex/active</config_path>
+                    </field>
+                    <field id="title" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Title</label>
+                        <comment>
+                            <![CDATA[This is the payment method name your customers will see during checkout.]]>
+                        </comment>
+                        <config_path>payment/smartex/title</config_path>
+                    </field>
+                    <field id="network" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Network</label>
+                        <source_model>Smartex\Core\Model\Config\Source\Network</source_model>
+                        <config_path>payment/smartex/network</config_path>
+                        <comment>
+                            <![CDATA[You can sign up for a test account at <a href="https://test.smartex.io" target="_blank">test.smartex.io</a>.]]>
+                        </comment>
+                    </field>
+                    <field id="debug" translate="label" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Debug</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>payment/smartex/debug</config_path>
+                        <comment>
+                            <![CDATA[By enabling this, it will output more verbose information in log files.]]>
+                        </comment>
+                    </field>
+                    <field id="notification_url" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Notification URL</label>
+                        <config_path>payment/smartex/notification_url</config_path>
+                    </field>
+                    <field id="redirect_url" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Redirect URL</label>
+                        <config_path>payment/smartex/redirect_url</config_path>
+                    </field>
+                    <field id="speed" translate="label" type="select" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Transaction Speed</label>
+                        <source_model>Smartex\Core\Model\Config\Source\TransactionSpeed</source_model>
+                        <config_path>payment/smartex/speed</config_path>
+                        <comment>
+                            <![CDATA[Determines when a Smartex payment confirmation is sent.<br /><strong>High:</strong> an invoice is confirmed immediately when payment received.<br /><strong>Medium:</strong> an invoice is confirmed after 1 block confirmation by the Ethereum Network (~30 sec).<br /><strong>Low:</strong> an invoice is confirmed after 15 block confirmations by the Ethereum Network (~5 min).<br />]]>
+                        </comment>
+                    </field>
+                </group>
+                <group id="smartex_settings" translate="label" showInDefault="1" showInWebsite="1" sortOrder="10">
+                    <label>Magento Specific Settings</label>
+                    <attribute type="expanded">1</attribute>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Fieldset</frontend_model>
+                    <field id="allowspecific" translate="label" type="allowspecific" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Payment from Applicable Countries</label>
+                        <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+                        <config_path>payment/smartex/allowspecific</config_path>
+                    </field>
+                    <field id="specificcountry" translate="label" type="multiselect" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Payment from Specific Countries</label>
+                        <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <config_path>payment/smartex/specificcountry</config_path>
+                    </field>
+                    <field id="min_order_total" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Minimum Order Total</label>
+                        <config_path>payment/smartex/min_order_total</config_path>
+                    </field>
+                    <field id="max_order_total" translate="label" type="text" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Maximum Order Total</label>
+                        <config_path>payment/smartex/max_order_total</config_path>
+                    </field>
+                    <field id="sort_order" translate="label" type="text" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Sort Order</label>
+                        <frontend_class>validate-number</frontend_class>
+                        <config_path>payment/smartex/sort_order</config_path>
+                    </field>
+                </group>
+                <group id="smartex_orderstatus" translate="label" showInDefault="1" showInWebsite="1" sortOrder="15">
+                    <label>Invoice Settings</label>
+                    <attribute type="expanded">1</attribute>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Fieldset</frontend_model>
+                    <field id="invoice_paid" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Paid</label>
+                        <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
+                        <config_path>payment/smartex/invoice_paid</config_path>
+                        <comment>
+                            <![CDATA[An invoice is considered "paid" when the Ethereum Network sees a transaction.]]>
+                        </comment>
+                    </field>
+                    <field id="invoice_confirmed" translate="label" type="select" sortOrder="31" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Confirmed</label>
+                        <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
+                        <config_path>payment/smartex/invoice_confirmed</config_path>
+                        <comment>
+                            <![CDATA[A confirmed invoice means that the Ethereum Network has approved the transaction.]]>
+                        </comment>
+                    </field>
+                    <field id="invoice_complete" translate="label" type="select" sortOrder="32" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Complete</label>
+                        <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
+                        <config_path>payment/smartex/invoice_complete</config_path>
+                        <comment>
+                            <![CDATA[A completed Smartex invoice indicates the payment for the invoice has been fully confirmed by the Ethereum Network and the funds have been deposited into your Smartex Merchant account.]]>
+                        </comment>
+                    </field>
+                </group>
+                <group id="smartex_requirements" translate="label" showInDefault="1" showInWebsite="1" sortOrder="16">
+                    <label>Requirements</label>
+                    <attribute type="expanded">1</attribute>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Fieldset</frontend_model>
+                    <comment>
+                        <![CDATA[This extension will not function if you do not meet the system requirements.]]>
+                    </comment>
+                    <field id="has_openssl" translate="label" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>OpenSSL</label>
+                        <attribute type="php_extension">openssl</attribute>       
+                        <frontend_model>Smartex\Core\Block\Adminhtml\System\Config\Form\Field\Extension</frontend_model>
+                    </field>
+                </group>
+            </group>
+        </section>
+    </system>
+</config>
